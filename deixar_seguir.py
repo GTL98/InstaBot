@@ -17,7 +17,7 @@ class DeixarSeguir:
         self.senha = senha
         self.usuario = usuario
 
-        # Tempo quando o Bot foi ligado
+        # Tempo quando o InstaBot foi ligado
         tempo_inicio = time.time()
 
         # Indicar o driver do Chrome
@@ -53,7 +53,7 @@ class DeixarSeguir:
 
     def pagina_inicial_instagram(self):
         """
-        Função destinada à entrar com o login e senha do usuário e acessar a página inicial do Instagram.
+        Função destinada a entrar com o login e senha do usuário para acessar a página inicial do Instagram.
         """
         # XPath do login
         campo_login = '//*[@id="loginForm"]/div/div[1]/div/label/input'
@@ -71,18 +71,18 @@ class DeixarSeguir:
         time.sleep(5)
 
         # XPath do botão "Agora não" para salvar as informações no navegador
-        botao_agora_nao_1 = '//*[@id="react-root"]/section/main/div/div/div/div/button'
+        botao_agora_nao_1 = '//button[contains(text(), "Agora não")]'
         self.navegador.find_element(By.XPATH, botao_agora_nao_1).click()
         time.sleep(2)
 
-        # Nome da classe do botão "Agora não" para o navegador mandar notificações
-        botao_agora_nao_2 = 'aOOlW.HoLwm'
-        self.navegador.find_element(By.CLASS_NAME, botao_agora_nao_2).click()
+        # XPath do botão "Agora não" para o navegador mandar notificações
+        botao_agora_nao_2 = '//button[contains(text(), "Agora não")]'
+        self.navegador.find_element(By.XPATH, botao_agora_nao_2).click()
         time.sleep(2)
 
     def acessar_seu_perfil(self):
         """
-        Função destinada à entrar no seu perfil do Instagram.
+        Função destinada a entrar no seu perfil do Instagram.
         """
         # Encontrar o acesso ao perfil na página inicial
         perfil = f'//a[contains(@href, "{self.usuario}")]'
@@ -90,7 +90,7 @@ class DeixarSeguir:
 
     def acessar_seguidores(self):
         """
-        Função destinada à criar uma lista com todas as contas em 'seguidores'.
+        Função destinada a criar uma lista com todas as contas em 'seguidores'.
         :return lista com todas as contas de 'seguidores':
         """
         # Acessar a página das contas
@@ -110,7 +110,7 @@ class DeixarSeguir:
 
     def acessar_seguindo(self):
         """
-        Função destinada à criar uma lista com todas as contas em 'seguindo'.
+        Função destinada a criar uma lista com todas as contas em 'seguindo'.
         :return lista com todas as contas em 'seguindo':
         """
         # Acessar a página das contas
