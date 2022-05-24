@@ -10,11 +10,7 @@ from selenium.common.exceptions import NoSuchElementException  # Informar o erro
 
 class DeixarSeguir:
     """
-    Classe destinada a ser um robô para o Instagram. Suas funções são:
-        - Seguir contas;
-        - Dar like em fotos de hashtags;
-        - Dar like em fotos de contas específicas e
-        - Deixar de seguir contas que não seguem de volta;
+    Classe destinada a deixar de seguir as contas que não seguem de volta.
     """
     def __init__(self, usuario, senha):
         # Usuário e senha
