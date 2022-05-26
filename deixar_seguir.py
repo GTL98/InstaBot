@@ -46,6 +46,10 @@ class DeixarSeguir:
 
         # Deixar de seguir as conta que não seguem de volta de modo automático
         self.deixar_seguir(seguidores, seguindo)
+        time.sleep(1)
+
+        # Fechar o navegador
+        self.navegador.close()
 
         # Tempo de conclusão do trabalho do Bot
         tempo_final = (time.time() - tempo_inicio) / 60
@@ -209,6 +213,4 @@ class DeixarSeguir:
 
             if contador == maximo:
                 print(f'Deixamos de seguir {contador} contas!')
-                time.sleep(2)
-                self.navegador.close()
                 break
