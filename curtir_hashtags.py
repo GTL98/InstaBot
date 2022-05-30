@@ -6,7 +6,6 @@ from selenium.webdriver.common.by import By  # Encontrar os elemento na página
 from selenium.webdriver.chrome.service import Service  # Passar o driver para o selenium
 from webdriver_manager.chrome import ChromeDriverManager  # Baixar automaticamente o driver do Chrome
 from selenium.common.exceptions import NoSuchElementException  # Informar o erro que aparece
-from selenium.webdriver.common.action_chains import ActionChains  # Dar duplo clique
 
 
 class CurtirHashtags:
@@ -88,8 +87,6 @@ class CurtirHashtags:
         """
         Função destinada a curtir as postagens de uma determinada hasthtag.
         """
-        clique_duplo = ActionChains(self.navegador)
-
         # Clicar na primeira postagem da hashtag
         postagem = '//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a/div[1]/div[2]'
         self.navegador.find_element(By.XPATH, postagem).click()
@@ -99,14 +96,11 @@ class CurtirHashtags:
         maximo = randint(80, 101)
         contador = 0
         while True:
-            # Curtir a foto com duplo clique na própria foto
-            for i in range(0, 2):
-                # Evita que o script trave no vídeo
-                curtir_foto = '_9AhH0'
-                elemento = self.navegador.find_element(By.CLASS_NAME, curtir_foto)
-                clique_duplo.double_click(on_element=elemento)
-                clique_duplo.perform()
-                time.sleep(1)
+            # Curtir a foto
+            curtir_foto = '/html/body/div[6]/div[3]/div/article/div/div[2]/' \
+                          'div/div/div[2]/section[1]/span[1]/button'
+            self.navegador.find_element(By.XPATH, curtir_foto).click()
+            time.sleep(1)
             contador += 1
 
             # Avançar para a próxima postagem
