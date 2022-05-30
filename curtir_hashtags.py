@@ -12,11 +12,12 @@ class CurtirHashtags:
     """
     Classe destinada a curtir postagens de uma determinada hashtag.
     """
-    def __init__(self, usuario, senha, hashtag):
+    def __init__(self, usuario, senha, hashtag, quantidade_curtir):
         # Usuário, senha e hashtag
         self.usuario = usuario
         self.senha = senha
         self.hashtag = hashtag
+        self.quantidade_curtir = quantidade_curtir
 
         # Tempo quando o InstaBot foi ligado
         tempo_inicio = time.time()
@@ -92,8 +93,7 @@ class CurtirHashtags:
         self.navegador.find_element(By.XPATH, postagem).click()
         time.sleep(2)
 
-        # Loop para curtir de 80-100 fotos da hashtag específica
-        maximo = randint(80, 101)
+        # Loop para curtir a quantidade de sejada de publicações da hashtag específica
         contador = 0
         while True:
             # Curtir a foto
@@ -111,6 +111,6 @@ class CurtirHashtags:
                 proxima_postagem = '/html/body/div[6]/div[2]/div/div/button'
                 self.navegador.find_element(By.XPATH, proxima_postagem).click()
             time.sleep(2)
-            if contador == maximo:
+            if contador == self.quantidade_curtir:
                 print(f'Foram curtidas {contador} com a hashtag #{self.hashtag}')
                 break
